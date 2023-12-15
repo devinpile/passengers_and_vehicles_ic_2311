@@ -48,10 +48,51 @@ RSpec.describe Park do
             @vehicle_1.add_passenger(@charlie)
             @vehicle_1.add_passenger(@jake)
             @vehicle_1.add_passenger(@taylor) 
-
+            
             @park.enter_park(@vehicle_1) 
-
+            
             expect(@park.revenue).to eq 20
         end 
     end
+    
+    describe 'tracking all patrons' do 
+        it 'can alphabetically list #all_attendess' do 
+            @vehicle_1.add_passenger(@charlie)
+            @vehicle_1.add_passenger(@jake)
+            @vehicle_1.add_passenger(@taylor) 
+            @vehicle_2.add_passenger(@devin)
+            @vehicle_2.add_passenger(@teddy)
+            @vehicle_2.add_passenger(@jude) 
+            @park.enter_park(@vehicle_1) 
+            @park.enter_park(@vehicle_2) 
+
+            expect(@park.all_attendess).to eq [@charlie, @devin, @jake, @jude, @taylor, @teddy]
+        end
+
+        it 'can alphabetically list #all_adults' do 
+            @vehicle_1.add_passenger(@charlie)
+            @vehicle_1.add_passenger(@jake)
+            @vehicle_1.add_passenger(@taylor) 
+            @vehicle_2.add_passenger(@devin)
+            @vehicle_2.add_passenger(@teddy)
+            @vehicle_2.add_passenger(@jude) 
+            @park.enter_park(@vehicle_1) 
+            @park.enter_park(@vehicle_2) 
+
+            expect(@park.all_adults).to eq [@charlie, @devin, @jake]
+        end
+        
+        it 'can alphabetically list #all_minors' do 
+            @vehicle_1.add_passenger(@charlie)
+            @vehicle_1.add_passenger(@jake)
+            @vehicle_1.add_passenger(@taylor) 
+            @vehicle_2.add_passenger(@devin)
+            @vehicle_2.add_passenger(@teddy)
+            @vehicle_2.add_passenger(@jude) 
+            @park.enter_park(@vehicle_1) 
+            @park.enter_park(@vehicle_2) 
+        
+            expect(@park.all_minors).to eq [@jude, @taylor, @teddy]
+        end
+    end 
 end 

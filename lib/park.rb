@@ -29,4 +29,22 @@ class Park
             end
         end
     end 
+
+    def all_attendess
+        list_all_passengers.sort_by do |attendee| 
+            attendee.name 
+        end
+    end
+
+    def all_adults
+        all_attendess.find_all do |attendee|
+            attendee.adult?
+        end
+    end
+
+    def all_minors
+        all_attendess.find_all do |attendee|
+            !attendee.adult?
+        end
+    end
 end
